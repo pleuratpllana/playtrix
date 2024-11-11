@@ -31,10 +31,10 @@ A responsive React application that lets users explore music from Deezer, create
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/playtrix.git
+   git clone https://github.com/pleuratpllana/playtrix.git
    cd playtrix
 2. Set up Environment Variables:
-
+ ```bash
 Create a .env file at the root of your project.
 Add your Deezer API credentials or any other required environment variables.
 
