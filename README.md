@@ -2,6 +2,10 @@
 
 A responsive React application that lets users explore music from Deezer, create accounts, manage playlists, and track their listening habits. With this app, users can search for songs, artists, albums, genres, and playlists, and play 30-second previews directly from the Deezer API.
 
+## Live Preview
+
+https://playtrix.the-p-squared.com
+
 ## Features
 
 - **Account Creation**: Simulated on the front end to enable personalized experiences.
@@ -41,7 +45,4 @@ A responsive React application that lets users explore music from Deezer, create
 3. **Start the Application**:
  ```bash
 npm start
-
-
-
 
