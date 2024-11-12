@@ -87,9 +87,9 @@ const Dashboard = () => {
         );
         const values = limitedData.map((item) => {
           if (category.name === "Top Artists") {
-            return item.fanCount || 0; // Use fanCount for Top Artists
+            return item.fanCount || 0; 
           } else if (category.name === "Genres by Popularity") {
-            return item.id || Math.floor(Math.random() * 100); // Use id or a placeholder for genres
+            return item.id || Math.floor(Math.random() * 100); 
           } else if (category.name === "Recent Releases") {
             return new Date(item.releaseDate).getTime() / 1000000 || 0;
           } else {
