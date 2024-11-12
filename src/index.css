@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Instrument Sans", sans-serif;
+  background: #111;
+  /* overflow-y: hidden; */
+}
+
+.line {
+  margin-top: 6px;
+}
+
+input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+@media (min-width: 1400px) {
+  .custom-img {
+    width: 800px; /* Width for screens larger than 1400px */
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1399px) {
+  .custom-img {
+    width: 600px; /* Width for screens between 1024px and 1400px */
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .custom-img {
+    width: 700px; /* Width for screens between 768px and 1023px */
+    right: 0 !important;
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .custom-img {
+    width: 400px; /* Width for screens 767px and below */
+    right: 0 !important;
+    position: absolute;
+    bottom: 0;
+  }
+}
