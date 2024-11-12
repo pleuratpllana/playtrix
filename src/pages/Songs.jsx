@@ -6,13 +6,13 @@ import { fetchPopularDeezerSongs as fetchDeezerSongs } from "../config/config";
 import { pageDetails } from "../utils/utils";
 
 const Songs = () => {
-  const [songs, setSongs] = useState([]); // All songs fetched
-  const [filteredSongs, setFilteredSongs] = useState([]); // Filtered songs based on search or filter
-  const [activeFilterId, setActiveFilterId] = useState(null); // Filter selection
-  const [searchTerm, setSearchTerm] = useState(""); // Search term
-  const [loading, setLoading] = useState(false); // Loading state
-  const [playingTrack, setPlayingTrack] = useState(null); // Track being played
-  const [audio, setAudio] = useState(null); // Audio instance
+  const [songs, setSongs] = useState([]);
+  const [filteredSongs, setFilteredSongs] = useState([]); 
+  const [activeFilterId, setActiveFilterId] = useState(null); 
+  const [searchTerm, setSearchTerm] = useState(""); 
+  const [loading, setLoading] = useState(false); 
+  const [playingTrack, setPlayingTrack] = useState(null); 
+  const [audio, setAudio] = useState(null); 
 
   const { title, description, mainHeadings } = pageDetails.songs;
 
@@ -28,7 +28,7 @@ const Songs = () => {
       setLoading(true);
       const initialSongs = await fetchDeezerSongs();
       setSongs(initialSongs);
-      setFilteredSongs(initialSongs); // Set both to initial fetched songs
+      setFilteredSongs(initialSongs); 
       setLoading(false);
     };
     loadSongs();
@@ -37,26 +37,26 @@ const Songs = () => {
   // Handle play/pause of the track
   const handlePlayPause = (trackId, previewUrl) => {
     if (playingTrack?.trackId === trackId) {
-      setPlayingTrack(null); // Pause if the same track is playing
+      setPlayingTrack(null); 
     } else {
-      setPlayingTrack({ trackId, previewUrl }); // Play the new track
+      setPlayingTrack({ trackId, previewUrl }); 
     }
   };
 
   // Play audio when a track is selected
   useEffect(() => {
     if (playingTrack) {
-      if (audio) audio.pause(); // Pause previous audio if playing
+      if (audio) audio.pause();
       const newAudio = new Audio(playingTrack.previewUrl);
       newAudio.play();
       setAudio(newAudio);
 
       // Add event listener for the 'ended' event to reset the playing track when the song finishes
       newAudio.addEventListener("ended", () => {
-        setPlayingTrack(null); // Reset playing track when song ends
+        setPlayingTrack(null); 
       });
     } else if (audio) {
-      audio.pause(); // Pause the audio if no track is selected
+      audio.pause(); 
     }
   }, [playingTrack]);
 
@@ -64,32 +64,32 @@ const Songs = () => {
   const handleSearchChange = async (term) => {
     setSearchTerm(term);
     setLoading(true);
-    const results = await fetchDeezerSongs(term); // Fetch filtered data based on search term
+    const results = await fetchDeezerSongs(term); 
     setSongs(results);
-    setFilteredSongs(results); // Set the filtered songs based on the search
+    setFilteredSongs(results); 
     setLoading(false);
   };
 
   // Handle the filter selection (A-Z, Duration, Position)
   const handleFilterSelect = (filterId) => {
-    setActiveFilterId(filterId); // Set active filter
-    let sortedSongs = [...filteredSongs]; // Start with the already filtered list
+    setActiveFilterId(filterId); 
+    let sortedSongs = [...filteredSongs]; 
 
     // Apply sorting based on the selected filter
     switch (filterId) {
       case "alphabetical":
-        sortedSongs.sort((a, b) => a.title.localeCompare(b.title)); // Sort A-Z
+        sortedSongs.sort((a, b) => a.title.localeCompare(b.title));
         break;
       case "duration":
-        sortedSongs.sort((a, b) => a.duration - b.duration); // Sort by duration
+        sortedSongs.sort((a, b) => a.duration - b.duration); 
         break;
       case "position":
-        sortedSongs.sort((a, b) => a.position - b.position); // Sort by position
+        sortedSongs.sort((a, b) => a.position - b.position); 
         break;
       default:
         break;
     }
-    setFilteredSongs(sortedSongs); // Set the sorted songs
+    setFilteredSongs(sortedSongs); 
   };
 
   return (
@@ -97,11 +97,11 @@ const Songs = () => {
       title={title}
       description={description}
       searchTerm={searchTerm}
-      setSearchTerm={handleSearchChange} // Search handler
+      setSearchTerm={handleSearchChange}
     >
       <Filters
         options={filterOptions}
-        onFilterSelect={handleFilterSelect} // Filter handler
+        onFilterSelect={handleFilterSelect} 
         activeFilterId={activeFilterId}
       />
 
@@ -114,7 +114,7 @@ const Songs = () => {
       ) : (
         <Table
           mainHeadings={mainHeadings}
-          data={filteredSongs} // Pass filtered songs
+          data={filteredSongs}
           handlePlayPause={handlePlayPause}
           playingTrack={playingTrack}
           showPlaylistColumn={true}
